@@ -1,121 +1,110 @@
 body{
-
 background:#000;
 color:white;
 font-family:'Righteous',sans-serif;
 margin:0;
 padding:40px;
-
 }
 
 .page-border{
-
 border:3px solid;
-
 border-image:linear-gradient(
 150deg,
-#ff5757,
-#ff8f57,
-#fff757,
-#57ff68,
-#57ffff,
-#57a8ff,
-#7b57ff,
-#db57ff
+#ff5757 0%,
+#ff8f57 14%,
+#fff757 28%,
+#57ff68 42%,
+#57ffff 56%,
+#57a8ff 70%,
+#7b57ff 84%,
+#db57ff 100%
 )1;
 
 padding:40px;
-max-width:1200px;
+max-width:750px;
 margin:auto;
-
 }
 
-.rainbow-text{
-
+.title,
+.section-title{
 background:linear-gradient(
 150deg,
-#ff5757,
-#ff8f57,
-#fff757,
-#57ff68,
-#57ffff,
-#57a8ff,
-#7b57ff,
-#db57ff
+#ff5757 0%,
+#ff8f57 14%,
+#fff757 28%,
+#57ff68 42%,
+#57ffff 56%,
+#57a8ff 70%,
+#7b57ff 84%,
+#db57ff 100%
 );
-
+background-size:100% 100%;
+background-repeat:no-repeat;
+display:inline-block;
 -webkit-background-clip:text;
+background-clip:text;
 -webkit-text-fill-color:transparent;
-
+color:transparent;
 }
 
 .title{
-
 font-size:44px;
 text-align:center;
-
+display:block;
 }
 
 .subtitle{
-
 font-style:italic;
 font-size:20px;
 text-align:center;
-
 }
 
 .divider{
-
 height:4px;
 width:60%;
 margin:25px auto;
 
 background:linear-gradient(
 150deg,
-#ff5757,
-#ff8f57,
-#fff757,
-#57ff68,
-#57ffff,
-#57a8ff,
-#7b57ff,
-#db57ff
+#ff5757 0%,
+#ff8f57 14%,
+#fff757 28%,
+#57ff68 42%,
+#57ffff 56%,
+#57a8ff 70%,
+#7b57ff 84%,
+#db57ff 100%
 );
-
 }
 
 .validator-logo{
-
 display:flex;
 justify-content:center;
 margin-bottom:20px;
-
 }
 
 .validator-logo img{
-
-max-width:80px;
-height:auto;
-
+width:220px;
+max-width:220px;
+display:block;
+margin:auto;
 border-radius:16px;
 
 box-shadow:
 0 0 25px rgba(255,255,255,0.2),
 0 0 60px rgba(123,87,255,0.25);
-
 }
 
-.section-grid{
+/* SINGLE COLUMN LAYOUT */
 
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+.section-grid{
+display:flex;
+flex-direction:column;
 gap:30px;
 margin-top:60px;
-
 }
 
 .section-card{
-
 background:#0c0f17;
 border-radius:18px;
 padding:28px;
@@ -123,80 +112,73 @@ padding:28px;
 border:2px solid;
 border-image:linear-gradient(
 150deg,
-#ff5757,
-#ff8f57,
-#fff757,
-#57ff68,
-#57ffff,
-#57a8ff,
-#7b57ff,
-#db57ff
+#ff5757 0%,
+#ff8f57 14%,
+#fff757 28%,
+#57ff68 42%,
+#57ffff 56%,
+#57a8ff 70%,
+#7b57ff 84%,
+#db57ff 100%
 )1;
 
 transition:transform .2s ease;
-
 }
 
 .section-card:hover{
-
 transform:translateY(-3px);
-
 }
 
 .section-title{
-
 font-size:26px;
-
 }
 
 .section-divider{
-
 height:3px;
 margin:10px 0 20px;
 
 background:linear-gradient(
 150deg,
-#ff5757,
-#ff8f57,
-#fff757,
-#57ff68,
-#57ffff,
-#57a8ff,
-#7b57ff,
-#db57ff
+#ff5757 0%,
+#ff8f57 14%,
+#fff757 28%,
+#57ff68 42%,
+#57ffff 56%,
+#57a8ff 70%,
+#7b57ff 84%,
+#db57ff 100%
 );
+}
 
+/* FIX LONG ADDRESSES */
+
+.vote-key,
+.wallet{
+word-break:break-all;
+overflow-wrap:anywhere;
 }
 
 .wallet{
-
 display:flex;
 justify-content:space-between;
 margin:8px 0;
-
 }
 
 button{
-
 background:#111;
 border:1px solid #444;
 color:white;
 padding:4px 10px;
 border-radius:6px;
 cursor:pointer;
-
 }
 
 button:hover{
-
 background:#333;
-
 }
 
 footer{
-
 text-align:center;
 margin-top:60px;
 color:#aaa;
-
 }
