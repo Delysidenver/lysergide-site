@@ -1,65 +1,58 @@
-const votePubkey="AwSna46Utw2Wq4GusBmDLkFwXv8SmJumduA5Da1EH6kY"
+const voteKey = "AwSna46Utw2Wq4GusBmDLkFwXv8SmJumduA5Da1EH6kY";
 
 async function loadValidator(){
 
-const res=await fetch("https://api.mainnet-beta.solana.com",{
+try{
 
+const res = await fetch("https://rpc.mainnet.x1.xyz",{
 method:"POST",
-
-headers:{
-
-"Content-Type":"application/json"
-
-},
-
+headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
-
 jsonrpc:"2.0",
-
 id:1,
-
 method:"getVoteAccounts"
-
 })
+});
 
-})
+const data = await res.json();
 
-const data=await res.json()
+const validators = [
+...data.result.current,
+...data.result.delinquent
+];
 
-const validator=data.result.current.find(v=>v.votePubkey===votePubkey)
+const val = validators.find(v => v.votePubkey === voteKey);
 
-if(!validator){
+if(!val){
+document.getElementById("valStatus").innerText="Not Found";
+return;
+}
 
-document.getElementById("valStatus").innerText="Not Found"
+document.getElementById("valStatus").innerText =
+data.result.current.find(v=>v.votePubkey===voteKey) ? "Active" : "Delinquent";
 
-return
+document.getElementById("valStake").innerText =
+(val.activatedStake / 1000000000).toFixed(2) + " XNT";
+
+document.getElementById("valCommission").innerText =
+val.commission + "%";
+
+document.getElementById("valVote").innerText =
+val.lastVote;
+
+document.getElementById("valCredits").innerText =
+val.epochCredits[val.epochCredits.length-1][1];
+
+}catch(err){
+
+console.log(err);
 
 }
 
-document.getElementById("valStatus").innerText="Active"
-
-document.getElementById("valStake").innerText=
-
-(validator.activatedStake/1000000000).toFixed(2)+" SOL"
-
-document.getElementById("valCommission").innerText=
-
-validator.commission+"%"
-
-document.getElementById("valVote").innerText=
-
-validator.lastVote
-
-document.getElementById("valCredits").innerText=
-
-validator.epochCredits.slice(-1)[0][1]
-
 }
 
-loadValidator()
+loadValidator();
 
-function copyText(text){
+/* refresh every 30 seconds */
 
-navigator.clipboard.writeText(text)
-
-}
+setInterval(loadValidator,30000);
